@@ -47,7 +47,7 @@ Let \( Z \) be a set of \( n \) discrete variables. Each variable \( x_i \in Z \
 
 Then:
 ```math
-P(B_s, D) = P(B_s) \prod_i \prod_j \left[ \frac{(r_i - 1)!}{(N_{ij} + r_i - 1)!} \prod_k N_{ijk}! \right]```
+P(B_s, D) = P(B_s) \prod_i \prod_j \left[ \frac{(r_i - 1)!}{(N_{ij} + r_i - 1)!} \prod_k N_{ijk}! \right]
 
 
 ## Implementation
@@ -117,7 +117,7 @@ This function computes the Cooper-Herskovits score \( g(x_i, \pi_i) \) for a giv
 The formula used is:
 
 ```math
-g(i, \pi_i) = \prod_{j=1}^{q_i} \left[ \frac{(r_i - 1)!}{(N_{ij} + r_i - 1)!} \prod_{k=1}^{r_i} N_{ijk}! \right]```
+g(i, \pi_i) = \prod_{j=1}^{q_i} \left[ \frac{(r_i - 1)!}{(N_{ij} + r_i - 1)!} \prod_{k=1}^{r_i} N_{ijk}! \right]
 
 However, computing factorials of large values directly can lead to **overflow** or **underflow** errors.
 
@@ -125,7 +125,7 @@ To overcome this, the formula is rewritten using the **logarithmic gamma functio
 This relies on the identity:
 
 ```math
-\log(n!) = \log\Gamma(n + 1)```
+\log(n!) = \log\Gamma(n + 1)
 
 Thus, the Cooper-Herskovits score becomes:
 
