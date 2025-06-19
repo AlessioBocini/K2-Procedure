@@ -46,9 +46,9 @@ Let \( Z \) be a set of \( n \) discrete variables. Each variable \( x_i \in Z \
 - \( N_{ij} = \sum_k N_{ijk} \)
 
 Then:
-```math
+$$
 P(B_s, D) = P(B_s) \prod_i \prod_j \left[ \frac{(r_i - 1)!}{(N_{ij} + r_i - 1)!} \prod_k N_{ijk}! \right]
-
+$$
 
 ## Implementation
 
@@ -103,8 +103,10 @@ Computes \( N_{ijk} \): the number of cases in the dataset where:
 
 Computes \( N_{ij} \), defined as:
 
-```math
-N_{ij} = \sum_{k=1}^{r_i} N_{ijk}```
+$$
+N_{ij} = \sum_{k=1}^{r_i} N_{ijk}
+$$
+
 
 Counts how many cases match the \( j \)-th parent instantiation, regardless of the value of \( x_i \).  
 This value \( N_{ij} \) is needed to compute the denominator in the Cooper-Herskovits scoring formula.
@@ -116,21 +118,22 @@ This value \( N_{ij} \) is needed to compute the denominator in the Cooper-Hersk
 This function computes the Cooper-Herskovits score \( g(x_i, \pi_i) \) for a given node \( x_i \) and its parent set \( \pi_i \).  
 The formula used is:
 
-```math
+$$
 g(i, \pi_i) = \prod_{j=1}^{q_i} \left[ \frac{(r_i - 1)!}{(N_{ij} + r_i - 1)!} \prod_{k=1}^{r_i} N_{ijk}! \right]
-
+$$
 However, computing factorials of large values directly can lead to **overflow** or **underflow** errors.
 
 To overcome this, the formula is rewritten using the **logarithmic gamma function** (`loggamma`), which is more numerically stable.  
 This relies on the identity:
 
-```math
+$$
 \log(n!) = \log\Gamma(n + 1)
-
+$$
 Thus, the Cooper-Herskovits score becomes:
 
-```math
-\log g(i, \pi_i) = \sum_{j=1}^{q_i} \left[ \log\Gamma(r_i) - \log\Gamma(N_{ij} + r_i) + \sum_{k=1}^{r_i} \log\Gamma(N_{ijk} + 1) \right]```
+$$
+\log g(i, \pi_i) = \sum_{j=1}^{q_i} \left[ \log\Gamma(r_i) - \log\Gamma(N_{ij} + r_i) + \sum_{k=1}^{r_i} \log\Gamma(N_{ijk} + 1) \right]
+$$
 This log-domain version preserves the theoretical definition while enabling stable and efficient computation.
 
 ### Why This Matters
