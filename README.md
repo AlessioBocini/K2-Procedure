@@ -46,6 +46,7 @@ Let \( Z \) be a set of \( n \) discrete variables. Each variable \( x_i \in Z \
 - \( N_{ij} = \sum_k N_{ijk} \)
 
 Then:
+
 $$
 P(B_s, D) = P(B_s) \prod_i \prod_j \left[ \frac{(r_i - 1)!}{(N_{ij} + r_i - 1)!} \prod_k N_{ijk}! \right]
 $$
